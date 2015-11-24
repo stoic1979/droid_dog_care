@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/DrawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="6">
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar">
+        </include>
+        <ImageView
+            android:id="@+id/img_add"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="right|top"
+            android:src="@drawable/dogthumb"
+            android:layout_marginTop="10dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/btnDogsCard"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp">
+            <TextView
+                android:id="@+id/dogName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Memo"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                />
+            <TextView
+                android:id="@+id/dogAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/dogName"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorPrimary"
+
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/go"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/btnMemo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/memo"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/memmo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/memo"
+                android:layout_toRightOf="@+id/memo"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="20dp"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/btnMedicalRec"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/medicalRec"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/medicalrec"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/medical_records"
+                android:layout_toRightOf="@+id/medicalRec"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="20dp"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/btnVeternaries"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/veternaries"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/vetrenary"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/veternaries"
+                android:layout_toRightOf="@+id/veternaries"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="20dp"
+                />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RecyclerView"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="#ffffff"
+        android:scrollbars="vertical">
+    </android.support.v7.widget.RecyclerView>
+
+
+</android.support.v4.widget.DrawerLayout>

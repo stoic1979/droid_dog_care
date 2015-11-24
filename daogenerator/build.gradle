@@ -1,0 +1,10 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+mainClassName = "com.example.DogsDaoGenerator"
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/daogenerator-1.3.0.jar')
+    compile files('libs/freemarker-2.3.23.jar')
+}
