@@ -61,7 +61,7 @@
                 android:id="@+id/weight"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/memmo"
+                android:src="@drawable/weight"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
 
@@ -88,7 +88,7 @@
                 android:id="@+id/height"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/medicalrec"
+                android:src="@drawable/height"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 />
@@ -114,7 +114,7 @@
                 android:id="@+id/birthday"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/vetrenary"
+                android:src="@drawable/cake"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 />
@@ -139,7 +139,7 @@
                 android:id="@+id/chip"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/vetrenary"
+                android:src="@drawable/chip"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 />

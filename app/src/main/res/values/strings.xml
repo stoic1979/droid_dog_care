@@ -28,5 +28,21 @@
     <string name="title_activity_medical_records">MedicalRecords</string>
     <string name="title_activity_veternaries">Veternaries</string>
     <string name="title_activity_my_dog_card">MyDogCard</string>
+    <string name="title_activity_update_dog_info">UpdateDogInfo</string>
+
+    <string name="galleryPick">Pick Image From Gallery</string>
+    <string name="cameraPick">Take Picture</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="vaccination">VACCINATION</string>
+    <string name="antiparastics">ANTIPARASITICS</string>
+    <string name="visitsAndSurgens">ViSITS AND SURGERIES</string>
+    <string name="Medicine">MEDICINE/ADMINISTRATIONS</string>
+    <string name="Notes">NOTES</string>
+    <string name="title_activity_vaccination">Vaccination</string>
+    <string name="title_activity_add_vaccination">AddVaccination</string>
+
+
+
 
 </resources>

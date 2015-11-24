@@ -1,5 +1,11 @@
 package barinder.example.com.navigationdrawer;
+import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +30,7 @@ import com.weavebytes.dogsapp.model.DaoSession;
 import com.weavebytes.dogsapp.model.Dogs;
 import com.weavebytes.dogsapp.model.DogsDao;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 /// function
@@ -49,10 +57,13 @@ public class MainActivity extends AppCompatActivity  implements  View.OnClickLis
     ArrayList<Dogs> model = new ArrayList<Dogs>();
     ArrayAdapter<String> spinnerArrayAdapter;
     ArrayList<String> array = new ArrayList<String>();
-    ArrayList<Integer> agearray = new ArrayList<Integer>();
+    ArrayList<String> agearray = new ArrayList<String>();
     RelativeLayout dogsCard , memo, medicalRecords, veternaries;
-   int birthdate;
-
+     String birthdate;
+    private static final int SELECT_PICTURE = 1;
+    private  static  final  int IMAGE_CAPTURE = 2;
+    private String selectedImagePath;
+    private ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +86,7 @@ public class MainActivity extends AppCompatActivity  implements  View.OnClickLis
         memo.setOnClickListener(this);
         medicalRecords.setOnClickListener(this);
         veternaries.setOnClickListener(this);
-
+        img_add.setOnClickListener(this);
 
         mLayoutManager =      new LinearLayoutManager(this);   // Creating a layout Manager
         mAdapter       =      new MyAdapter(TITLES, ICONS); // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
@@ -162,7 +173,7 @@ public class MainActivity extends AppCompatActivity  implements  View.OnClickLis
             data.setSex			(dogsArray.get(i).getSex());
             array.add(data);
         }
-        Log.d(TAG,"dogs Array"+array);
+        Log.d(TAG, "dogs Array" + array);
         return array;
     }
 
@@ -223,10 +234,100 @@ public class MainActivity extends AppCompatActivity  implements  View.OnClickLis
                 startActivity(intent3);
                 return;
 
+            case R.id.img_add:
+                setImage();
+
 
 
 
         }
 
+    }
+    public  void setImage(){
+        final Dialog dialog = new Dialog(MainActivity.this);
+/*
+        dialog.setTitle("Select Image From");
+*/
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.image_picker);
+        dialog.show();
+        TextView gallery, camera, cancel;
+        gallery = (TextView) dialog.findViewById(R.id.gallery);
+        camera = (TextView) dialog.findViewById(R.id.camera);
+        cancel = (TextView) dialog.findViewById(R.id.cancel);
+
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, SELECT_PICTURE);
+            }
+        });
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            dialog.dismiss();
+                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, IMAGE_CAPTURE);
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             dialog.dismiss();
+            }
+        });
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK && null != data) {
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            img_add.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            img_add.buildDrawingCache();
+            Bitmap bmap = img_add.getDrawingCache();
+            bitmap2bytes(bmap);
+            /*inserting image to database*/
+            DaoSession daoSession  =  ((DogsApplication)getApplicationContext()).getDaoSession();
+            DogsDao dogsDao        =  daoSession.getDogsDao();
+            Dogs dogs = new Dogs();
+            Log.d(TAG,"dog name"+dogName.getText());
+            List<Dogs> dog = dogsDao.queryBuilder()
+                    .where(DogsDao.Properties.Name.like("%" + dogName.getText() + "%"))
+                    .list();
+            Log.d(TAG,"dogsList"+dog);
+            Log.d(TAG," bitmap"+bitmap2bytes(bmap));
+            /*for (int i = 0; i < dog.size(); i++) {
+                Log.d(TAG, "picture " + dog.get(i).getPicture());
+                dog.set(i,dogs).setPicture(bitmap2bytes(bmap));
+                Log.d(TAG, "picture " + dog.get(i).getPicture());
+            }*/
+
+        }
+        if (requestCode == IMAGE_CAPTURE && resultCode == RESULT_OK && null != data){
+            this.img_add.setImageBitmap((Bitmap) data.getExtras().get("data"));
+           /* img_add.buildDrawingCache();
+            Bitmap bmap = img_add.getDrawingCache();*/
+        }
+    }
+
+
+
+    public static byte[] bitmap2bytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    public static Bitmap bytes2Bitmap(byte[] byteArray) {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
     }
 }

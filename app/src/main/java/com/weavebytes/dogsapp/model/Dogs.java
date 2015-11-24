@@ -8,12 +8,13 @@ public class Dogs {
 
     private Long id;
     private String Name;
-    private Integer BirthDate;
+    private String BirthDate;
     private Integer Weight;
     private Integer Withers;
     private String Breed;
     private String Chip;
     private String Sex;
+    private byte[] picture;
 
     public Dogs() {
     }
@@ -22,7 +23,7 @@ public class Dogs {
         this.id = id;
     }
 
-    public Dogs(Long id, String Name, Integer BirthDate, Integer Weight, Integer Withers, String Breed, String Chip, String Sex) {
+    public Dogs(Long id, String Name, String BirthDate, Integer Weight, Integer Withers, String Breed, String Chip, String Sex, byte[] picture) {
         this.id = id;
         this.Name = Name;
         this.BirthDate = BirthDate;
@@ -31,6 +32,7 @@ public class Dogs {
         this.Breed = Breed;
         this.Chip = Chip;
         this.Sex = Sex;
+        this.picture = picture;
     }
 
     public Long getId() {
@@ -49,11 +51,11 @@ public class Dogs {
         this.Name = Name;
     }
 
-    public Integer getBirthDate() {
+    public String getBirthDate() {
         return BirthDate;
     }
 
-    public void setBirthDate(Integer BirthDate) {
+    public void setBirthDate(String BirthDate) {
         this.BirthDate = BirthDate;
     }
 
@@ -95,6 +97,14 @@ public class Dogs {
 
     public void setSex(String Sex) {
         this.Sex = Sex;
+    }
+
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
     }
 
 }

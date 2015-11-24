@@ -41,7 +41,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/themeColor"
                 />
             <TextView
                 android:id="@+id/dogAge"
@@ -88,6 +88,8 @@
                 android:layout_marginTop="30dp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+
 
                 />
         </RelativeLayout>
@@ -113,6 +115,8 @@
                 android:layout_marginTop="30dp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+
 
                 />
         </RelativeLayout>
@@ -138,6 +142,8 @@
                 android:layout_marginTop="30dp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+
                 />
         </RelativeLayout>
 

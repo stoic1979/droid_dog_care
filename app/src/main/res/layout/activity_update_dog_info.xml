@@ -1,0 +1,164 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="barinder.example.com.navigationdrawer.Add">
+
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/background_material_dark">
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/backbutton"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/back"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:textColor="@color/abc_primary_text_disable_only_material_dark"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/tick"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textview1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Name:"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:id="@+id/edittext1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint=" Name:"
+                    android:layout_below="@id/textview1"/>
+
+                <TextView
+                    android:id="@+id/textview2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Birth date:"
+                    android:layout_below="@id/edittext1"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:id="@+id/edittext2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  _/_/_:"
+                    android:layout_below="@id/textview2"/>
+
+                <TextView
+                    android:id="@+id/textview3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Weight:"
+                    android:layout_below="@id/edittext2"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:id="@+id/edittext3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  kg:"
+                    android:layout_below="@id/textview3"/>
+                <TextView
+                    android:id="@+id/textview4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Withers(shoulder):"
+                    android:layout_below="@id/edittext3"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:id="@+id/edittext4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  cm:"
+                    android:layout_below="@id/textview4"/>
+
+                <TextView
+                    android:id="@+id/textview5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Breed:"
+                    android:layout_below="@id/edittext4"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:id="@+id/edittext5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  Breed:"
+                    android:layout_below="@id/textview5"/>
+
+                <TextView
+                    android:id="@+id/textview6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Chip:"
+                    android:layout_below="@id/edittext5"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+                <EditText
+                    android:id="@+id/edittext6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  Code:"
+                    android:layout_below="@id/textview6"/>
+                <TextView
+                    android:id="@+id/textview7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Sex:"
+                    android:layout_below="@id/edittext6"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview7"
+
+                    ></Spinner>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>

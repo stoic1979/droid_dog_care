@@ -77,7 +77,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="  _/_/_:"
-                        android:layout_below="@id/textview2"/>
+                        android:layout_below="@id/textview2"
+                        android:inputType="date"/>
 
                     <TextView
                         android:id="@+id/textview3"
@@ -93,7 +94,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="  kg:"
-                        android:layout_below="@id/textview3"/>
+                        android:layout_below="@id/textview3"
+                        android:inputType="number"/>
                     <TextView
                         android:id="@+id/textview4"
                         android:layout_width="fill_parent"
@@ -108,7 +110,8 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="  cm:"
-                        android:layout_below="@id/textview4"/>
+                        android:layout_below="@id/textview4"
+                        android:inputType="number"/>
 
                     <TextView
                         android:id="@+id/textview5"

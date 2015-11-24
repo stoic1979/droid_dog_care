@@ -19,13 +19,13 @@ public class DogsDaoGenerator {
         dog.setTableName("Dogs");
         dog.addIdProperty().autoincrement().primaryKey();
         dog.addStringProperty("Name");
-        dog.addIntProperty("BirthDate");
+        dog.addStringProperty("BirthDate");
         dog.addIntProperty("Weight");
         dog.addIntProperty("Withers");
         dog.addStringProperty("Breed");
         dog.addStringProperty("Chip");
         dog.addStringProperty("Sex");
-
+        dog.addByteArrayProperty("picture");
         // generatng scheme
         new DaoGenerator().generateAll(schema, "../app/src/main/java");
 

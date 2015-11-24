@@ -1,16 +1,30 @@
 package barinder.example.com.navigationdrawer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
-public class MedicalRecords extends AppCompatActivity {
+public class MedicalRecords extends AppCompatActivity implements View.OnClickListener{
+    RelativeLayout btnVaccination, btnAntiparasitic, btnMedicine, btnVisits, btnNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_records);
+        btnVaccination   =  (RelativeLayout)  findViewById(R.id.btnVaccination);
+        btnAntiparasitic =  (RelativeLayout)  findViewById(R.id.btnAntiparistics);
+        btnMedicine      =  (RelativeLayout)  findViewById(R.id.btnMedicine);
+        btnVisits        =  (RelativeLayout)  findViewById(R.id.btnVisitsAndSurgeries);
+        btnNotes         =  (RelativeLayout)  findViewById(R.id.btnNotes);
+        btnNotes.setOnClickListener(this);
+        btnVisits.setOnClickListener(this);
+        btnAntiparasitic.setOnClickListener(this);
+        btnMedicine.setOnClickListener(this);
+        btnVaccination.setOnClickListener(this);
     }
 
     @Override
@@ -33,5 +47,18 @@ public class MedicalRecords extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+
+
+            case  R.id.btnVaccination:
+                Intent intent = new Intent(MedicalRecords.this,Vaccination.class);
+                startActivity(intent);
+
+        }
+
     }
 }

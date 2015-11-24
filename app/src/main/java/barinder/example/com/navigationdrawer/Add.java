@@ -1,5 +1,6 @@
 package barinder.example.com.navigationdrawer;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,8 +23,10 @@ import com.weavebytes.dogsapp.model.Dogs;
 import com.weavebytes.dogsapp.model.DogsDao;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Add extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     Button back, addDogs;
@@ -31,6 +35,8 @@ public class Add extends AppCompatActivity implements View.OnClickListener, Adap
     private String[] state = {"Male", "Female"};
      private  String TAG = "Add Dogs Activity ";
     String sexValue;
+    Calendar myCalendar = Calendar.getInstance();
+
     private  DaoSession daoSession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,16 +114,16 @@ public class Add extends AppCompatActivity implements View.OnClickListener, Adap
         switch (v.getId()) {
             case R.id.back:
                 DogsDao dogsDao = daoSession.getDogsDao();
-                List<Dogs> leaseList = dogsDao.loadAll();
-                Log.d(TAG, " Dog Name"+leaseList);
-                Log.d(TAG, " Dog Name"+leaseList.get(1).getName());
-                Log.d(TAG, " Dog Id " + leaseList.get(1).getId());
-                Log.d(TAG, " Dog Bredd "+leaseList.get(1).getBreed());
-                Log.d(TAG, " Dog Chip "+leaseList.get(1).getChip());
-                Log.d(TAG, " Dog sex "+leaseList.get(1).getSex());
-                Log.d(TAG, " Dog Birthdate "+leaseList.get(1).getBirthDate());
-                Log.d(TAG, " Dog Withers "+leaseList.get(1).getWithers());
-                Log.d(TAG, " Dog Weight " + leaseList.get(1).getWeight());
+                List<Dogs> dogsList = dogsDao.loadAll();
+               /* Log.d(TAG, " Dog Name"+dogsList);
+                Log.d(TAG, " Dog Name"+dogsList.get(1).getName());
+                Log.d(TAG, " Dog Id " + dogsList.get(1).getId());
+                Log.d(TAG, " Dog Bredd "+dogsList.get(1).getBreed());
+                Log.d(TAG, " Dog Chip "+dogsList.get(1).getChip());
+                Log.d(TAG, " Dog sex "+dogsList.get(1).getSex());
+                Log.d(TAG, " Dog Birthdate "+dogsList.get(1).getBirthDate());
+                Log.d(TAG, " Dog Withers "+dogsList.get(1).getWithers());
+                Log.d(TAG, " Dog Weight " + dogsList.get(1).getWeight());*/
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
@@ -130,8 +136,8 @@ public class Add extends AppCompatActivity implements View.OnClickListener, Adap
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
-            case R.id.valbirthday:
-
+            case R.id.edittext2:
+                  datePicker();
 
 
         }
@@ -151,7 +157,8 @@ public class Add extends AppCompatActivity implements View.OnClickListener, Adap
 
         Dogs dogs = new Dogs();
         dogs.setName(name.getText().toString());
-        dogs.setBirthDate(Integer.parseInt(birthDate.getText().toString()));
+         dogs.setBirthDate(birthDate.getText().toString());
+        // dogs.setBirthDate(Integer.parseInt(birthDate.getText().toString()));
         dogs.setBreed(breed.getText().toString());
         dogs.setChip(chip.getText().toString());
         dogs.setSex(sexValue);
@@ -160,17 +167,38 @@ public class Add extends AppCompatActivity implements View.OnClickListener, Adap
         DogsDao dogsDao = daoSession.getDogsDao();
         dogsDao.insert(dogs);
 
-        List<Dogs> leaseList = dogsDao.loadAll();
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getName());
-        Log.d(TAG, " Dog Name" + leaseList.get(0).getId());
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getBreed());
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getChip());
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getSex());
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getBirthDate());
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getWithers());
-        Log.d(TAG, " Dog Name"+leaseList.get(0).getWeight());
+        List<Dogs> DogsList = dogsDao.loadAll();
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getName());
+        Log.d(TAG, " Dog Name" + DogsList.get(0).getId());
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getBreed());
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getChip());
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getSex());
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getBirthDate());
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getWithers());
+        Log.d(TAG, " Dog Name"+DogsList.get(0).getWeight());
 
+    }
+      public  void  datePicker(){
+          DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+              @Override
+              public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                    int dayOfMonth) {
+                  // TODO Auto-generated method stub
+                  myCalendar.set(Calendar.YEAR, year);
+                  myCalendar.set(Calendar.MONTH, monthOfYear);
+                  myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                  updateLabel();
+              }
 
+          };
+          new DatePickerDialog(Add.this, date, myCalendar
+                  .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                  myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+      }
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
+        birthDate.setText(sdf.format(myCalendar.getTime()));
     }
 
 }
